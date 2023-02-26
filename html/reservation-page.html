@@ -1,0 +1,53 @@
+<main className="bg-gray-100 h-screen w-screen">
+    <main className="max-w-screen-2xl m-auto bg-white">
+
+      {/* NAVBAR */}
+      <nav className="bg-white p-2 flex justify-between">
+        <a href="" className="font-bold text-gray-700 text-2xl">
+          OpenTable
+        </a>
+        <div>
+          <div>
+            <button className="bg-blue-400 text-white p-1 px-4 border rounded mr-3">SignIn</button>
+            <button className="p-1 px-4 border rounded">SignUp</button>
+          </div>
+        </div>
+      </nav>
+      {/* NAVBAR */}
+
+      <div className="border-t h-screen">
+        <div className="py-9 w-3/5 m-auto">
+          {/* HEADER */}
+          <div className="">
+            <h3 className="font-bold">You're almost done</h3>
+            <div className="mt-5 flex">
+              <img src="https://resizer.otstatic.com/v2/photos/xlarge/8/42510338.jpg" alt="" className="w-32 h-18 rounded" />
+              <div className="ml-4">
+                <h1 className="text-3xl font-bold">My Restaurant</h1>
+                <div className="flex mt-3">
+                  <p className="mr-6">Tue, 22, 2023</p>
+                  <p className="mr-6">7:30pm</p>
+                  <p className="mr-6">4 people</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* HEADER */}
+
+          {/* FORM */}
+          <div className="mt-10 flex flex-wrap justify-between w-[660px]">
+            <input className="border rounded p-3 w-80 mb-4" placeholder="firstname" />
+            <input className="border rounded p-3 w-80 mb-4" placeholder="lastname" />
+            <input className="border rounded p-3 w-80 mb-4" placeholder="phone" />
+            <input className="border rounded p-3 w-80 mb-4" placeholder="email" />
+            <input className="border rounded p-3 w-80 mb-4" placeholder="special occasion (optional)" />
+            <input className="border rounded p-3 w-80 mb-4" placeholder="special requests (optional)" />
+            <button className="bg-red-600 disabled:bg-gray-300 text-white p-3 w-full rounded font-bold">Complete reservation</button>
+            <p className="mt-3 text-sm">Amet consectetur adipisicing elit. Adipisci quasi repellendus iste dolorem sit eligendi dicta non sapiente distinctio consequuntur?</p>
+          </div>
+          {/* FORM */}
+        </div>
+      </div>
+
+    </main>
+  </main>

@@ -1,91 +1,48 @@
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from './page.module.css'
+import Header from "./components/header";
+import RestaurantCard from "./components/restaurant-card";
+import { PrismaClient } from "@prisma/client";
 
-const inter = Inter({ subsets: ['latin'] })
+const prisma = new PrismaClient()
 
-export default function Home() {
+// Could not run seed.js, so manually created data in Location, Cuisine, Restaurant tables in Supabase.
+// Ran the entire schema.prisma from 'harblaith7/Next13-Udemy-Course' so have the following tables
+// Wondering if any other data integrity issues are causing the problem. 
+// Also enabled RLS with read policy in Supabase for all tables
+// in SupaBase: Tables (9)...
+// Booking
+// BookingsOnTables
+// Cuisine (3 rows)
+// Item
+// Location (3 rows)
+// Restaurant (2 rows referencing the Location(#4) and Cuising(#1) IDs)
+// Review
+// Table
+// User
+
+const fetchRestaurants = async () => {
+  const restaurants = await prisma.restaurant.findMany();
+  return restaurants
+};
+
+
+export default async function Home() {
+  // un-commenting the fetchRestaurants() line below breaks the app.
+  // const restaurants = await fetchRestaurants()
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <main>
+      <Header />
+      <div className="py-3 px-36 mt-10 flex flex-wrap">
+        <RestaurantCard />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
+        {/* So never tried the code below */}
+        {/* {restaurants.map((restaurant) => (
+          <RestaurantCard restaurant={restaurant}/>
+        ))} */}
 
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
       </div>
     </main>
-  )
+  );
 }
+
+
